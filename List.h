@@ -1,0 +1,118 @@
+#ifndef LIST_H
+#define LIST_H
+
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+template <typename T>
+class List {
+	struct Node {
+		T* data = nullptr;
+		Node* prev = nullptr;
+		Node* next = nullptr;
+	};
+private:
+	Node* head;
+public:
+    List () {
+		head = new Node;
+        head->data = nullptr;
+		head->prev = nullptr;
+        head->next = nullptr;
+    };
+
+    ~List () {
+		Node* cur = head;
+		while (true) {
+			if (cur->data != nullptr) delete cur->data;
+			if (cur->next != nullptr) {
+				cur = cur->next;
+				delete cur->prev;
+			}
+			else {
+				delete cur;
+				break;
+			}
+		}
+    };
+
+    void add (T* obj) {
+		Node* cur = head;
+		while (true) {
+			if (cur->data == nullptr) {
+				cur->data = obj;
+				break;
+			}
+			else if (cur->next == nullptr) {
+				cur->next = new Node;
+				cur->next->prev = cur;
+				cur = cur->next;
+			}
+			else if (cur->next != nullptr) cur = cur->next;
+		}
+    };
+
+	void remove (const int n) {
+		Node* cur = head;
+		int i = 0;
+		while (true) {
+			if (i > n) break;
+			if (i == n) {
+				delete cur->data;
+				if (cur->prev != nullptr) cur->prev->next = cur->next;
+				else head = cur->next;
+				delete cur;
+			}
+			else cur = cur->next;
+			++i;
+		} 
+	}
+
+    void show () {
+		Node* cur = head;
+		int i = 1;
+		while (cur != nullptr) {
+			if (cur->data != nullptr) cout << "\n¹ " << i << "\t" << *cur->data;
+			++i;
+			cur = cur->next;
+		}
+    }
+
+	T* get_elem(const int n) {
+		Node* cur = head;
+		for (int i = 1; i <= n; i++) {
+			if (i == n) return cur;
+			if (cur->next != nullptr) cur = cur->next;
+		}
+		return 0;
+	}
+
+	void show_to_file (ofstream& f) {
+		Node* cur = head;
+		int i = 1;
+		while (cur != nullptr) {
+			if (cur->data != nullptr) {
+				f << "\n¹ " << i << "\t";
+				cur->data->to_file(f);
+			}
+			++i;
+			cur = cur->next;
+		}
+	}
+
+	bool empty() {
+		if (this->head->data == nullptr) return true;
+		else return false;
+	}
+
+	T* get_last() {
+		Node* cur = head;
+		while (cur->next != nullptr) cur = cur->next;
+		return cur->data;
+	}
+};
+
+#endif 
