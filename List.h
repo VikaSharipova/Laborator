@@ -57,16 +57,16 @@ public:
 
 	void remove (int n) {
 		Node* cur = head;
-		int i = 0;
+		int i = 1;
 		bool done = false;
-		while (true) {
-			if (i > n) break;
-			if (i == n) {
+		while (cur != nullptr) {
+			if (i == n && cur -> data != nullptr) {
 				delete cur->data;
 				if (cur->prev != nullptr) cur->prev->next = cur->next;
 				else head = cur->next;
 				delete cur;
 				done = true;
+				break;
 			}
 			else cur = cur->next;
 			++i;
@@ -121,3 +121,4 @@ public:
 };
 
 #endif 
+
