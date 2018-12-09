@@ -1,8 +1,8 @@
 #include "mus_instrument.h"
 
 Mus_Instrument::Mus_Instrument() {
-    name = "неизвестно";
-    owner = "неизвестно";
+    name = "РЅРµРёР·РІРµСЃС‚РЅРѕ";
+    owner = "РЅРµРёР·РІРµСЃС‚РЅРѕ";
     cost = 0;
     quantity = 0;
 }
@@ -38,14 +38,3 @@ int Mus_Instrument::get_cost() const {
 int Mus_Instrument::get_quantity() const {
     return quantity;
 }
-
-
-
-
-
-
-
-
-
-
-
