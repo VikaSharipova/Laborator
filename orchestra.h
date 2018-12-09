@@ -5,7 +5,6 @@
 #include "stringed.h"
 #include "brass.h"
 #include "List.h"
-#include <fstream>
 
 using namespace std;
 
@@ -20,10 +19,13 @@ public:
 	void add (Stringed*);
 	void add (Brass*);
 	void add (Percussion*);
-	void remove (const int, const int);
-	void show() const;
-	void save (const string) const;
-	void read (const string);
+	void remove (int, int);
+	List<Stringed>* get_s();
+	List<Brass>* get_b();
+	List<Percussion>* get_p();
+	void show();
+	void save (string);
+	void read (string);
 	~Orchestra ();
 };
 
