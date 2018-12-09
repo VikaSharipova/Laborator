@@ -2,7 +2,6 @@
 #define PERCUSSION_H
 
 #include "mus_instrument.h"
-#include <fstream>
 
 class Percussion : public Mus_Instrument
 {
@@ -11,10 +10,11 @@ private:
 public:
     Percussion();
 	void create_new ();
-    void set_type (const string&);
-    string get_type () const;
-	void to_file(ofstream &) const;
-    friend ostream& operator<< (ostream&, const Percussion&);
+    void set_type (string&);
+    string get_type ();
+	void to_file(ofstream &);
+    void show ();
 };
 
 #endif //PERCUSSION_H
+
