@@ -2,55 +2,91 @@
 
 Stringed::Stringed() {
     Mus_Instrument();
-    description = "неизвестно";
-    manufacturer = "неизвестно";
+    description = "РЅРµРёР·РІРµСЃС‚РЅРѕ";
+    manufacturer = "РЅРµРёР·РІРµСЃС‚РЅРѕ";
 }
 
-void Stringed::set_description(const string& s) {
+void Stringed::set_description(string& s) {
     description = s;
 }
 
-string Stringed::get_description() const {
+string Stringed::get_description() {
     return description;
 }
 
-ostream &operator<< (ostream & os, const Stringed& a) {
-    os << "Название: " << a.get_name() << endl << "\tПроизводитель: " << a.get_manufacturer() << endl << "\tФИО владельца: " << a.get_owner() << endl << "\tСтоимость: " << a.get_cost() << endl << "\tКоличество единиц в оркестре: " << a.get_quantity() << endl << "\tКороткое описание: " << a.get_description() << endl;
-    return os;
+void Stringed::show () {
+    cout << "РќР°Р·РІР°РЅРёРµ: " << get_name() << endl << "\tРџСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ: " << get_manufacturer() << endl << "\tР¤РРћ РІР»Р°РґРµР»СЊС†Р°: " << get_owner() << endl << "\tРЎС‚РѕРёРјРѕСЃС‚СЊ: " << get_cost() << endl << "\tРљРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† РІ РѕСЂРєРµСЃС‚СЂРµ: " << get_quantity() << endl << "\tРљРѕСЂРѕС‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ: " << get_description() << endl;
 }
 
 void Stringed::create_new () {
-    string buff;
-    cout << "\nДобавление нового струнного инструмента" << endl;
-    cout << "Введите название: ";
-    cin >> buff;
-    this->set_name (buff);
-    cout << "Введите название производителя: ";
-    cin >> buff;
-    this->set_manufacturer (buff);
-    cout << "Введите ФИО владельца: ";
-    cin >> buff;
-    this->set_owner (buff);
-    cout << "Введите стоимость: ";
-    cin >> buff;
-    this->set_cost (stoi(buff));
-    cout << "Введите количество единиц в оркестре: ";
-    cin >> buff;
-    this->set_quantity (stoi(buff));
-    cout << "Введите короткое описание: ";
-    cin >> buff;
-    this->set_description(buff);
+    string buff("");
+	char c = 0;
+    cout << "\nР”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СЃС‚СЂСѓРЅРЅРѕРіРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ: ";
+	getchar();
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
+    set_name (buff);
+	buff.clear();
+    cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
+    set_manufacturer (buff);
+	buff.clear();
+    cout << "\nР’РІРµРґРёС‚Рµ Р¤РРћ РІР»Р°РґРµР»СЊС†Р°: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
+    set_owner (buff);
+	buff.clear();
+    cout << "\nР’РІРµРґРёС‚Рµ СЃС‚РѕРёРјРѕСЃС‚СЊ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
+    set_cost (stoi(buff));
+	buff.clear();
+    cout << "\nР’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† РІ РѕСЂРєРµСЃС‚СЂРµ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
+    set_quantity (stoi(buff));
+	buff.clear();
+    cout << "\nР’РІРµРґРёС‚Рµ РєРѕСЂРѕС‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
+    set_description(buff);
 }
 
-void Stringed::set_manufacturer(const string& s) {
+void Stringed::set_manufacturer(string& s) {
     manufacturer = s;
 }
 
-string Stringed::get_manufacturer() const {
+string Stringed::get_manufacturer() {
     return manufacturer;
 }
 
-void Stringed::to_file(ofstream& f) const {
-	f << "Название: " << this->get_name() << "\n" << "\tПроизводитель: " << this->get_manufacturer() << "\n" << "\tФИО владельца: " << this->get_owner() << "\n" << "\tСтоимость: " << this->get_cost() << "\n" << "\tКоличество единиц в оркестре: " << this->get_quantity() << "\n" << "\tКороткое описание: " << this->get_description() << "\n";
+void Stringed::to_file(ofstream& f) {
+	f << "РќР°Р·РІР°РЅРёРµ: " << this->get_name() << "\n" << "\tРџСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ: " << this->get_manufacturer() << "\n" << "\tР¤РРћ РІР»Р°РґРµР»СЊС†Р°: " << this->get_owner() << "\n" << "\tРЎС‚РѕРёРјРѕСЃС‚СЊ: " << this->get_cost() << "\n" << "\tРљРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† РІ РѕСЂРєРµСЃС‚СЂРµ: " << this->get_quantity() << "\n" << "\tРљРѕСЂРѕС‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ: " << this->get_description() << "\n";
 }
+
 
