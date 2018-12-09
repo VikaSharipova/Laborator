@@ -55,9 +55,10 @@ public:
 		}
     };
 
-	void remove (const int n) {
+	void remove (int n) {
 		Node* cur = head;
 		int i = 0;
+		bool done = false;
 		while (true) {
 			if (i > n) break;
 			if (i == n) {
@@ -65,29 +66,33 @@ public:
 				if (cur->prev != nullptr) cur->prev->next = cur->next;
 				else head = cur->next;
 				delete cur;
+				done = true;
 			}
 			else cur = cur->next;
 			++i;
-		} 
+		}
+		if (done == false) throw exception("Ошибка удаления инструмента");
 	}
 
     void show () {
 		Node* cur = head;
 		int i = 1;
 		while (cur != nullptr) {
-			if (cur->data != nullptr) cout << "\n� " << i << "\t" << *cur->data;
+			if (cur->data != nullptr) cout << "\n№ " << i << "\t";
+			cur->data->show();
 			++i;
 			cur = cur->next;
 		}
     }
 
-	T* get_elem(const int n) {
+	T* get_elem (int n) {
 		Node* cur = head;
 		for (int i = 1; i <= n; i++) {
-			if (i == n) return cur;
+			if (i == n && cur->data != nullptr) return cur->data;
 			if (cur->next != nullptr) cur = cur->next;
+			else throw exception("Елемент не найден");
 		}
-		return 0;
+		throw exception("Елемент не найден");
 	}
 
 	void show_to_file (ofstream& f) {
@@ -95,7 +100,7 @@ public:
 		int i = 1;
 		while (cur != nullptr) {
 			if (cur->data != nullptr) {
-				f << "\n� " << i << "\t";
+				f << "\n№ " << i << "\t";
 				cur->data->to_file(f);
 			}
 			++i;
