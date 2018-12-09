@@ -2,56 +2,91 @@
 
 Brass::Brass() {
     Mus_Instrument();
-    manufacturer = "íåèçâåñòíî";
-    defects = "íåèçâåñòíî";
+    manufacturer = "Ğ½ĞµĞ¸Ğ·Ğ²ĞµÑÑ‚Ğ½Ğ¾";
+    defects = "Ğ½ĞµĞ¸Ğ·Ğ²ĞµÑÑ‚Ğ½Ğ¾";
 }
 
-void Brass::set_manufacturer(const string& s) {
+void Brass::set_manufacturer(string& s) {
     manufacturer = s;
 }
 
-string Brass::get_manufacturer() const {
+string Brass::get_manufacturer() {
     return manufacturer;
 }
 
-void Brass::to_file(ofstream & f) const {
-	f << "Íàçâàíèå: " << this->get_name() << "\n" << "\tÏğîèçâîäèòåëü: " << this->get_manufacturer() << "\n" << "\tÔÈÎ âëàäåëüöà: " << this->get_owner() << "\n" << "\tÑòîèìîñòü: " << this->get_cost() << "\n" << "\tÊîëè÷åñòâî åäèíèö â îğêåñòğå: " << this->get_quantity() << "\n" << "\tÄåôåêòû: " << this->get_defects() << "\n";
+void Brass::to_file(ofstream & f) {
+	f << "ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ: " << this->get_name() << "\n" << "\tĞŸÑ€Ğ¾Ğ¸Ğ·Ğ²Ğ¾Ğ´Ğ¸Ñ‚ĞµĞ»ÑŒ: " << this->get_manufacturer() << "\n" << "\tĞ¤Ğ˜Ğ Ğ²Ğ»Ğ°Ğ´ĞµĞ»ÑŒÑ†Ğ°: " << this->get_owner() << "\n" << "\tĞ¡Ñ‚Ğ¾Ğ¸Ğ¼Ğ¾ÑÑ‚ÑŒ: " << this->get_cost() << "\n" << "\tĞšĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾ ĞµĞ´Ğ¸Ğ½Ğ¸Ñ† Ğ² Ğ¾Ñ€ĞºĞµÑÑ‚Ñ€Ğµ: " << this->get_quantity() << "\n" << "\tĞ”ĞµÑ„ĞµĞºÑ‚Ñ‹: " << this->get_defects() << "\n";
 }
 
-ostream &operator<< (ostream & os, const Brass& a) {
-    os << "Íàçâàíèå: " << a.get_name() << endl << "\tÏğîèçâîäèòåëü: " << a.get_manufacturer() << endl << "\tÔÈÎ âëàäåëüöà: " << a.get_owner() << endl << "\tÑòîèìîñòü: " << a.get_cost() << endl << "\tÊîëè÷åñòâî åäèíèö â îğêåñòğå: " << a.get_quantity() << endl << "\tÄåôåêòû: " << a.get_defects() << endl;
-    return os;
+void Brass::show () {
+    cout << "ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ: " << get_name() << endl << "\tĞŸÑ€Ğ¾Ğ¸Ğ·Ğ²Ğ¾Ğ´Ğ¸Ñ‚ĞµĞ»ÑŒ: " << get_manufacturer() << endl << "\tĞ¤Ğ˜Ğ Ğ²Ğ»Ğ°Ğ´ĞµĞ»ÑŒÑ†Ğ°: " << get_owner() << endl << "\tĞ¡Ñ‚Ğ¾Ğ¸Ğ¼Ğ¾ÑÑ‚ÑŒ: " << get_cost() << endl << "\tĞšĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾ ĞµĞ´Ğ¸Ğ½Ğ¸Ñ† Ğ² Ğ¾Ñ€ĞºĞµÑÑ‚Ñ€Ğµ: " << get_quantity() << endl << "\tĞ”ĞµÑ„ĞµĞºÑ‚Ñ‹: " << get_defects() << endl;
 }
 
 void Brass::create_new () {
-    string buff;
-    int buff_int;
-    cout << "\nÄîáàâëåíèå íîâîãî äóõîâîãî èíñòğóìåíòà" << endl;
-    cout << "Ââåäèòå íàçâàíèå: ";
-    cin >> buff;
+    string buff("");
+	char c = 0;
+    cout << "\nĞ”Ğ¾Ğ±Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ğµ Ğ½Ğ¾Ğ²Ğ¾Ğ³Ğ¾ Ğ´ÑƒÑ…Ğ¾Ğ²Ğ¾Ğ³Ğ¾ Ğ¸Ğ½ÑÑ‚Ñ€ÑƒĞ¼ĞµĞ½Ñ‚Ğ°" << endl;
+    cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ½Ğ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ: ";
+	getchar();
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
     this->set_name (buff);
-    cout << "Ââåäèòå íàçâàíèå ïğîèçâîäèòåëÿ: ";
-    cin >> buff;
+	buff.clear();
+    cout << "\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ½Ğ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¿Ñ€Ğ¾Ğ¸Ğ·Ğ²Ğ¾Ğ´Ğ¸Ñ‚ĞµĞ»Ñ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
     this->set_manufacturer (buff);
-    cout << "Ââåäèòå ÔÈÎ âëàäåëüöà: ";
-    cin >> buff;
+	buff.clear();
+    cout << "\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ¤Ğ˜Ğ Ğ²Ğ»Ğ°Ğ´ĞµĞ»ÑŒÑ†Ğ°: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
     this->set_owner (buff);
-	cout << "Ââåäèòå ñòîèìîñòü: ";
-	cin >> buff;
+	buff.clear();
+	cout << "\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ ÑÑ‚Ğ¾Ğ¸Ğ¼Ğ¾ÑÑ‚ÑŒ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
 	this->set_cost(stoi(buff));
-	cout << "Ââåäèòå êîëè÷åñòâî åäèíèö â îğêåñòğå: ";
-	cin >> buff;
+	buff.clear();
+	cout << "\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ ĞºĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾ ĞµĞ´Ğ¸Ğ½Ğ¸Ñ† Ğ² Ğ¾Ñ€ĞºĞµÑÑ‚Ñ€Ğµ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
 	this->set_quantity(stoi(buff));
-    cout << "Ââåäèòå îïèñàíèå äåôåêòîâ: ";
-    cin >> buff;
+	buff.clear();
+    cout << "\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ Ğ´ĞµÑ„ĞµĞºÑ‚Ğ¾Ğ²: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
     this->set_defects(buff);
 }
 
-void Brass::set_defects(const string& s) {
+void Brass::set_defects(string& s) {
     defects = s;
 }
 
-string Brass::get_defects() const {
+string Brass::get_defects() {
     return defects;
 }
 
