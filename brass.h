@@ -2,7 +2,6 @@
 #define BRASS_H
 
 #include "mus_instrument.h"
-#include <fstream>
 
 class Brass : public Mus_Instrument
 {
@@ -12,12 +11,12 @@ private:
 public:
     Brass();
 	void create_new ();
-    void set_defects (const string&);
-    string get_defects () const;
-    void set_manufacturer (const string&);
-    string get_manufacturer () const;
-	void to_file(ofstream &) const;
-    friend ostream& operator<< (ostream&, const Brass&);
+    void set_defects (string&);
+    string get_defects ();
+    void set_manufacturer (string&);
+    string get_manufacturer ();
+	void to_file (ofstream &);
+    void show ();
 };
 
 #endif //BRASS_H
