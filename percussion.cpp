@@ -2,44 +2,74 @@
 
 Percussion::Percussion() {
     Mus_Instrument();
-    type = "неизвестно";
+    type = "РЅРµРёР·РІРµСЃС‚РЅРѕ";
 }
 
-void Percussion::set_type(const string& s) {
+void Percussion::set_type(string& s) {
     type = s;
 }
 
-string Percussion::get_type() const {
+string Percussion::get_type() {
     return type;
 }
 
-void Percussion::to_file(ofstream & f) const {
-	f << "Название: " << this->get_name() << "\n" << "\tТип: " << this->get_type() << "\n" <<  "\tФИО владельца: " << this->get_owner() << "\n" << "\tСтоимость: " << this->get_cost() << "\n" << "\tКоличество единиц в оркестре: " << this->get_quantity() << "\n";
+void Percussion::to_file (ofstream & f) {
+	f << "РќР°Р·РІР°РЅРёРµ: " << get_name() << "\n" << "\tРўРёРї: " << get_type() << "\n" <<  "\tР¤РРћ РІР»Р°РґРµР»СЊС†Р°: " << get_owner() << "\n" << "\tРЎС‚РѕРёРјРѕСЃС‚СЊ: " << get_cost() << "\n" << "\tРљРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† РІ РѕСЂРєРµСЃС‚СЂРµ: " << get_quantity() << "\n";
 }
 
-ostream &operator<<(ostream & os, const Percussion& a) {
-    os << "Название: " << a.get_name() << endl << "\tТип: " << a.get_type() << endl <<  "\tФИО владельца: " << a.get_owner() << endl << "\tСтоимость: " << a.get_cost() << endl << "\tКоличество единиц в оркестре: " << a.get_quantity() << endl;
-    return os;
+void Percussion::show () {
+    cout << "РќР°Р·РІР°РЅРёРµ: " << get_name() << endl << "\tРўРёРї: " << get_type() << endl <<  "\tР¤РРћ РІР»Р°РґРµР»СЊС†Р°: " << get_owner() << endl << "\tРЎС‚РѕРёРјРѕСЃС‚СЊ: " << get_cost() << endl << "\tРљРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† РІ РѕСЂРєРµСЃС‚СЂРµ: " << get_quantity() << endl;
 }
 
 void Percussion::create_new () {
-    string buff;
-    int buff_int;
-    cout << "\nДобавление нового ударного инструмента" << endl;
-    cout << "Введите тип: ";
-    cin >> buff;
+    string buff("");
+	char c = 0;
+    cout << "\nР”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СѓРґР°СЂРЅРѕРіРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°" << endl;
+    cout << "Р’РІРµРґРёС‚Рµ С‚РёРї: ";
+	getchar();
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
     this->set_type(buff);
-    cout << "Введите название: ";
-    cin >> buff;
+	buff.clear();
+    cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
     this->set_name (buff);
-    cout << "Введите ФИО владельца: ";
-    cin >> buff;
+	buff.clear();
+    cout << "\nР’РІРµРґРёС‚Рµ Р¤РРћ РІР»Р°РґРµР»СЊС†Р°: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
     this->set_owner (buff);
-	cout << "Введите стоимость: ";
-	cin >> buff;
+	buff.clear();
+	cout << "\nР’РІРµРґРёС‚Рµ СЃС‚РѕРёРјРѕСЃС‚СЊ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
 	this->set_cost(stoi(buff));
-	cout << "Введите количество единиц в оркестре: ";
-	cin >> buff;
+	buff.clear();
+	cout << "\nР’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† РІ РѕСЂРєРµСЃС‚СЂРµ: ";
+	while (c != '\n') {
+		c = getchar();
+		buff.push_back(c);
+	}
+	buff.pop_back();
+	c = 0;
 	this->set_quantity(stoi(buff));
 }
+
 
